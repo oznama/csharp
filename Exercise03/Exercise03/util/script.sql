@@ -11,4 +11,4 @@
 INSERT INTO products (name, description, short_name, price, stack)
 VALUES ('Chetos', 'Chetos clasicos con queso', 'CHETOS', 10.00, 20);
 
-SELECT * FROM products;
+SELECT id, name, description, short_name, price, stack FROM products;
