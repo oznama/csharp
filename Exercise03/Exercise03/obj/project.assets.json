@@ -1234,23 +1234,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Oziel Naranjo Marque\\.nuget\\packages\\": {},
+    "C:\\Users\\Paula\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\tmp\\vstudio\\git\\csharp\\Exercise03\\Exercise03\\Exercise03.csproj",
+      "projectUniqueName": "C:\\Users\\Paula\\Desktop\\Practicas\\Git\\csharp\\Exercise03\\Exercise03\\Exercise03.csproj",
       "projectName": "Exercise03",
-      "projectPath": "D:\\tmp\\vstudio\\git\\csharp\\Exercise03\\Exercise03\\Exercise03.csproj",
-      "packagesPath": "C:\\Users\\Oziel Naranjo Marque\\.nuget\\packages\\",
-      "outputPath": "D:\\tmp\\vstudio\\git\\csharp\\Exercise03\\Exercise03\\obj\\",
+      "projectPath": "C:\\Users\\Paula\\Desktop\\Practicas\\Git\\csharp\\Exercise03\\Exercise03\\Exercise03.csproj",
+      "packagesPath": "C:\\Users\\Paula\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Paula\\Desktop\\Practicas\\Git\\csharp\\Exercise03\\Exercise03\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Oziel Naranjo Marque\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Paula\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
