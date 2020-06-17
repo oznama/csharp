@@ -6,3 +6,5 @@ C Sharp projects exercises
 
 2020/06/15 - PHG: Verificación de nombre de base de datos.
 				: Agregando otra descripcion en README.md
+
+2020/06/17 - ONM: Se ha verificado el commit de la primera parte del modulo de producto
