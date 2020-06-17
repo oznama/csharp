@@ -8,7 +8,21 @@
 	primary key(id)
 )
 
+
 INSERT INTO products (name, description, short_name, price, stack)
 VALUES ('Chetos', 'Chetos clasicos con queso', 'CHETOS', 10.00, 20);
 
+-- FindAll
 SELECT id, name, description, short_name, price, stack FROM products;
+
+--FindById
+SELECT id,name,description,short_name,price,stack FROM products WHERE id=@id;
+
+--Delete
+DELETE FROM products WHERE id=@id;
+
+--Save
+INSERT INTO products (name, description, short_name, price, stack) VALUES (@name, @description,@shortName,@price,@stack);
+
+--Update
+UPDATE products SET name=@name,description=@description,short_name=@shortName,price=@price,stack=@stack WHERE id=@id;
