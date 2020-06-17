@@ -1,4 +1,6 @@
 ﻿using System;
+using Exercise03.view;
+
 
 namespace Exercise03
 {
@@ -6,7 +8,8 @@ namespace Exercise03
     {
         static void Main(string[] args)
         {
-            
+            ProductsView productsView = new ProductsView();
+            productsView.Menu();
         }
     }
 }

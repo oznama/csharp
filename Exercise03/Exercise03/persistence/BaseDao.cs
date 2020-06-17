@@ -10,7 +10,7 @@ using System.Data.SqlClient;
  * BaseDao = Clase padre para acceso a datos
  */
 
-namespace Persistencia01.persistence
+namespace Exercise03.persistence
 {
     class BaseDao
     {
