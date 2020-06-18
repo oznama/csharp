@@ -1,6 +1,7 @@
 ﻿using System;
 using Exercise03.controller;
-using System.Collections.Generic;
+using Exercise03.model;
+using System.Collections;
 using System.Text;
 
 namespace Exercise03.view
@@ -33,8 +34,10 @@ namespace Exercise03.view
                         Update();
                         break;
                     case 3:
+                        Delete();
                         break;
                     case 4:
+                        Consult();
                         break;
                     case 5:
                         Console.Clear();
@@ -70,11 +73,11 @@ namespace Exercise03.view
 
             if (productsController.Save(name,description,shortName,price,stack))
             {
-                Console.WriteLine("\n\t...PRODUCTO AGREGADO CORRECTAMENTE...");
+                Console.WriteLine("\n\t...PRODUCTO AGREGADO CORRECTAMENTE...\n");
             }
             else
             {
-                Console.WriteLine("\n\t...PRODUCTO NO AGREGADO...");
+                Console.WriteLine("\n\t...PRODUCTO NO AGREGADO...\n");
             }          
         }
 
@@ -106,20 +109,78 @@ namespace Exercise03.view
 
                 if (productsController.Update(id, name, description, shortName, price, stack))
                 {
-                    Console.WriteLine("\t...PRODUCTO ACTUALIZADO CORRECTAMENTE...");
+                    Console.WriteLine("\t\n...PRODUCTO ACTUALIZADO CORRECTAMENTE...\n");
                 }
                 else
                 {
-                    Console.WriteLine("\t...PRODUCTO NO ACTUALIZADO...");
+                    Console.WriteLine("\t\n...PRODUCTO NO ACTUALIZADO...\n");
                 }
 
             }
             catch(Exception e)
             {
                 Console.WriteLine(e.Message);
-                Console.WriteLine("\t...PRODUCTO NO ACTUALIZADO...");
+                Console.WriteLine("\t\n...PRODUCTO NO ACTUALIZADO...\n");
             }
                                           
+        }
+
+        public void Delete()
+        {
+            productsController = new ProductsController();
+            Console.WriteLine("\t... DELETE PRODUCT...");
+            Console.Write("\nID: ");
+            int id = Int32.Parse(Console.ReadLine());
+
+            if (productsController.Delete(id))
+            {
+                Console.WriteLine("\t\n...PRODUCTO ELIMINADO...\n");
+            }
+            else
+            {
+                Console.WriteLine("\t\n...PRODUCTO NO ELININADO...\n");
+            }
+        }
+
+        public void Consult()
+        {
+            int op = -1;
+            productsController = new ProductsController();
+
+            Console.WriteLine("\t...CONSULT PRODUCT...\n");
+            do {
+                Console.WriteLine("\t1. CONSULTAR TODOS");
+                Console.WriteLine("\t2. CONSULTAR POR ID");
+                Console.WriteLine("\t3. REGRESAR");
+                Console.Write("\t\nOPCION: ");
+                op = Int32.Parse(Console.ReadLine());
+
+                switch (op)
+                {
+                    case 1:         
+                        ArrayList result = (ArrayList)productsController.Consult(0);
+                        Console.WriteLine("\nPRODUCTOS ENCONTRADOS {0}",result.Count);
+                        foreach (Products r in result)
+                        {
+                            Console.WriteLine(r);
+                        }                        
+                        break;
+
+                    case 2:
+                        Console.Write("\t\n ID: ");
+                        int id = Int32.Parse(Console.ReadLine());
+                        Console.WriteLine(productsController.Consult(id));
+                        break;
+
+                    case 3:
+                        Console.Clear();
+                        break;
+
+                    default:
+                        Console.Write("\t\n...OPCION INVALIDA...");
+                        break;
+                }
+            } while (op!=3);
         }
     }
 }
