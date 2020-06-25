@@ -50,7 +50,7 @@ namespace Exercise03.persistence
             try
             {
                 object[] result = (object[])base.SelectQuery()[0];
-                Products product = new Products()
+                Products product = new Products
                 {
                     Id = (int)result[0],
                     Name = (string)result[1],
