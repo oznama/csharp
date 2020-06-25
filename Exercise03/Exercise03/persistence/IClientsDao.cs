@@ -13,5 +13,6 @@ namespace Exercise03.persistence
         bool Delete(int id);
         ArrayList FindAll(int id);
         Clients FindById(int id);
+        ArrayList FindByUser(int userId);
     }
 }

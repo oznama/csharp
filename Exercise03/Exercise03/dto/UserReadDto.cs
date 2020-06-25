@@ -19,7 +19,7 @@ namespace Exercise03.dto
 
         }
 
-        public UserDto(int id, string userName, string fullName)
+        public UserReadDto(int id, string userName, string fullName)
         {
             this.id = id;
             this.userName = userName;

@@ -68,6 +68,31 @@ namespace Exercise03.persistence
             return null;
         }
 
+        public ArrayList FindByUser(int userId)
+        {
+            query = "SELECT id, name, address, phone, created_date FROM clients WHERE user_id = @userId";
+            @params = new Dictionary<string, object>
+            {
+                {"@userId",userId}
+            };
+            ArrayList clients = new ArrayList();
+            ArrayList result = base.SelectQuery();
+            Clients client;
+            foreach (object[] r in result)
+            {
+                client = new Clients
+                {
+                    ID = (int)r[0],
+                    Name = (string)r[1],
+                    Address = (string)r[2],
+                    Phone = (string)r[3],
+                    CreatedDate = (DateTime)r[4]
+                };
+                clients.Add(client);
+            }
+            return clients;
+        }
+
         public bool Save(Clients clients)
         {
             query = "INSERT INTO clients (name,address,phone,user_id,created_date) VALUES(@name,@address,@phone,@userId,@createdDate)";

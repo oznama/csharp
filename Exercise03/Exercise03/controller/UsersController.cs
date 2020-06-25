@@ -9,6 +9,7 @@ namespace Exercise03.controller
     class UsersController
     {
         private IUsersDao userDao;
+        private ClientsController clientController;
 
         public bool Save(UserDto userDto)
         {
@@ -41,6 +42,16 @@ namespace Exercise03.controller
                 list.Add( new UserReadDto(u.Id, u.UserName, u.FullName) );
             }
             return list;
+        }
+
+        public UserClientsDto GetUserWithClientsCreated(int id) {
+            clientController = new ClientsController();
+            UserClientsDto userClientsDto = new UserClientsDto
+            {
+                UserDto = GetById(id),
+                MyClients = clientController.FindByUser(id)
+            };
+            return userClientsDto;
         }
     }
 }

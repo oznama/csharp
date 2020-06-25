@@ -128,3 +128,35 @@ INSERT INTO clients (name,address,phone,user_id,created_date) VALUES(@name,@addr
 
 --Update Clients
 UPDATE clients SET name=@name,address=@address,phone=@phone,user_id=@userId,created_date=@createdDate WHERE id=@id;
+
+
+
+
+-- ONM: Querys de ejercicio de relacion 1:M
+SELECT * FROM users; -- Todos los usuarios
+
+SELECT id, name, address, phone, created_date FROM clients WHERE user_id = 2; -- Clientes por usuario
+
+-- Edra
+INSERT INTO clients (name, address, phone, user_id) VALUES ('Gudelia Gonzalez', 'Su casa', '5565656565', 1);
+INSERT INTO clients (name, address, phone, user_id) VALUES ('La Guera', 'Enfrente de la casa', '5564643790', 1);
+INSERT INTO clients (name, address, phone, user_id) VALUES ('Reina', 'Tambien enfrente de la casa pero al lado de la guera', '2888828282', 1);
+-- Carlos
+INSERT INTO clients (name, address, phone, user_id) VALUES ('Fernando', 'A un lado de la casa', '2888989898', 2);
+INSERT INTO clients (name, address, phone, user_id) VALUES ('Silvia', 'Atras de la casa', '2888738274', 2);
+
+-- Version 1 de query para ver clientes de un usuario
+SELECT users.fullname, clients.name, clients.address, clients.phone, clients.created_date
+FROM users, clients
+WHERE clients.user_id = users.id
+AND users.id = 1
+-- Version 2 de query para ver clientes de un usuario
+SELECT u.fullname, c.name, c.address, c.phone, c.created_date
+FROM users u, clients c
+WHERE c.user_id = u.id
+AND u.id = 1
+-- Version 3 de query para ver clientes de un usuario (Buena practica utilizar JOIN)
+SELECT u.fullname, c.name, c.address, c.phone, c.created_date
+FROM users u
+INNER JOIN clients c ON c.user_id = u.id
+WHERE u.id = 1
