@@ -1,5 +1,8 @@
 ﻿using Exercise03.persistence;
 using Exercise03.model;
+using Exercise03.dto;
+
+using System.Collections;
 
 namespace Exercise03.controller
 {
@@ -7,15 +10,15 @@ namespace Exercise03.controller
     {
         private IUsersDao userDao;
 
-        public bool Save(string userName, string pswd, string fullName)
+        public bool Save(UserDto userDto)
         {
             userDao = new UsersDao();
-            return userDao.Save(new Users(0,userName,pswd,fullName));
+            return userDao.Save(new Users(0,userDto.UserName,userDto.Pswd,userDto.FullName));
         }
-        public bool Update(int id, string userName, string pswd, string fullName)
+        public bool Update(UserDto userDto)
         {
             userDao = new UsersDao();
-            return userDao.Update(new Users(id,userName,pswd,fullName));
+            return userDao.Update(new Users(userDto.Id,userDto.UserName,userDto.Pswd,userDto.FullName));
         }
         public bool Delete(int id)
         {
@@ -23,20 +26,21 @@ namespace Exercise03.controller
             return userDao.Delete(id);
 
         }
-        public object Consult(int id)
-        {
+
+        public UserDto GetById(int id) {
             userDao = new UsersDao();
-            if (id == 0)
-            {
-                return userDao.FindAll();
-            }else if (id > 0)
-            {
-                return userDao.FindById(id);
+            Users user = userDao.FindById(id);
+            return new UserDto(user.Id, user.UserName, user.Pswd, user.FullName);
+        }
+
+        public ArrayList GetAll() {
+            ArrayList list = new ArrayList();
+            userDao = new UsersDao();
+            ArrayList listBD = userDao.FindAll();
+            foreach (Users u in listBD) {
+                list.Add( new UserReadDto(u.Id, u.UserName, u.FullName) );
             }
-            else
-            {
-                return null;
-            }
+            return list;
         }
     }
 }
