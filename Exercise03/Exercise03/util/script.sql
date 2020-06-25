@@ -84,17 +84,47 @@ create table sales_item(
 INSERT INTO products (name, description, short_name, price, stack)
 VALUES ('Chetos', 'Chetos clasicos con queso', 'CHETOS', 10.00, 20);
 
--- FindAll
+-- FindAll Products
 SELECT id, name, description, short_name, price, stack FROM products;
 
---FindById
+--FindById Products
 SELECT id,name,description,short_name,price,stack FROM products WHERE id=@id;
 
---Delete
+--Delete Products
 DELETE FROM products WHERE id=@id;
 
---Save
+--Save Products
 INSERT INTO products (name, description, short_name, price, stack) VALUES (@name, @description,@shortName,@price,@stack);
 
---Update
+--Update Products
 UPDATE products SET name=@name,description=@description,short_name=@shortName,price=@price,stack=@stack WHERE id=@id;
+
+--Save Users
+INSERT INTO users (username,pswd,fullname) VALUES (@userName,@pswd,@fullName);
+
+--UPDATE Users
+UPDATE users SET username=@userName,pswd=@pswd,fullname=@fullName WHERE id=@id;
+
+--DELETE Users
+DELETE FROM users WHERE id=@id;
+
+--FindAll Users
+SELECT id,username,pswd,fullname FROM users;
+
+--FindById Userd
+SELECT id,username,pswd,fullname FROM users WHERE id=@id;
+
+--DELETE Clients
+DELETE FROM clients WHERE id=@id;
+
+--FindAll Clients
+SELECT id,name,address,phone,user_id,created_date FROM clients;
+
+--FindById Clients
+SELECT id,name,address,phone,user_id,created_date FROM clients WHERE id=@id;
+
+--Save Clients
+INSERT INTO clients (name,address,phone,user_id,created_date) VALUES(@name,@address,@phone,@userId,@createdDate);
+
+--Update Clients
+UPDATE clients SET name=@name,address=@address,phone=@phone,user_id=@userId,created_date=@createdDate WHERE id=@id;
