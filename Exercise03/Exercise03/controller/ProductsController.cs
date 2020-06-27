@@ -11,7 +11,7 @@ namespace Exercise03.controller
         public bool Save(string nombre, string description, string shortName, decimal price,int stack)
         {
             productsDao = new ProductsDao();
-            return productsDao.Save(new Products(0,nombre,description,shortName,price,stack));           
+            return productsDao.Save(new Products(nombre,description,shortName,price,stack));           
         }
 
         public bool Update(int id, string name,string description,string shortName, decimal price, int stack)

@@ -39,6 +39,14 @@ namespace Exercise03.model
             this.price = price;
             this.stack = stack;
         }
+        public Products(string name, string description, string shortName, decimal price, int stack)
+        {
+            this.name = name;
+            this.description = description;
+            this.shortName = shortName;
+            this.price = price;
+            this.stack = stack;
+        }
 
         public override string ToString()
         {
