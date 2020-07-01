@@ -129,9 +129,6 @@ INSERT INTO clients (name,address,phone,user_id,created_date) VALUES(@name,@addr
 --Update Clients
 UPDATE clients SET name=@name,address=@address,phone=@phone,user_id=@userId,created_date=@createdDate WHERE id=@id;
 
-
-
-
 -- ONM: Querys de ejercicio de relacion 1:M
 SELECT * FROM users; -- Todos los usuarios
 
@@ -160,3 +157,42 @@ SELECT u.fullname, c.name, c.address, c.phone, c.created_date
 FROM users u
 INNER JOIN clients c ON c.user_id = u.id
 WHERE u.id = 1
+
+--Delete Providers
+DELETE FROM providers WHERE id=@id;
+--FindAll Providers
+SELECT id,name,description,created_date,user_id FROM providers
+--FindById Providers
+SELECT id,name,description,created_date,user_id FROM providers WHERE id=@id;
+--Save Providers
+INSERT INTO providers (name,description,user_id) VALUES(@name,@description,@userId);
+--Update Providers
+UPDATE  providers SET name=@name,description=@description,created_date=@createdDate, user_id=@userId Where id=@id;
+--Delete Sales
+DELETE FROM sales WHERE id =@id;
+--FindAll Sales
+SELECT id, sale_date,user_id,sale_total,client_id,trusted FROM sales;
+--FindById Sales
+SELECT id, sale_date,user_id,sale_total,client_id,trusted FROM sales WHERE id=@id;
+--FindByUserId Sales
+SELECT id, sale_date,user_id,sale_total,client_id,trusted FROM sales WHERE user_id=@userId;
+--FindByClientId Sales
+SELECT id, sale_date,user_id,sale_total,client_id,trusted FROM sales WHERE client_id=@clientId;
+--Save Sales 
+INSERT INTO sales (user_id,sale_total,client_id,trusted)VALUES (@userId,@saleTotal,@clientId,@trusted);
+--Update Sales
+UPDATE sales SET user_id=@userId,sale_total=@saleTotal,client_id=@clientId,trusted=@trusted WHERE id=@id;
+--Delete Purchases
+DELETE FROM purchases WHERE id =@id;
+--FindAll Purchases
+SELECT id,purchase_date,user_id,provider_id,purchase_total FROM purchases;
+--FindById Purchases
+SELECT id,purchase_date,user_id,provider_id,purchase_total FROM purchases WHERE id=@id;
+--FindByProviderId Purchases
+SELECT id,purchase_date,user_id,provider_id,purchase_total FROM purchases WHERE provider_id=@providerId;
+--FindByUserId Purchases
+SELECT id,purchase_date,user_id,provider_id,purchase_total FROM purchases WHERE user_id=@userId;
+--Save Purchases
+INSERT INTO purchases (user_id,provider_id,purchase_total)VALUES (@userId,@providerId@purchaseTotal);
+--Update Purchases
+UPDATE purchases SET purchase_date=@purchaseDate,user_id=@userId, provider_id=@providerId,purchase_total=@purchaseTotal WHERE id=@id;
