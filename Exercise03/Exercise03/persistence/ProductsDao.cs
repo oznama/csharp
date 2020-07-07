@@ -96,5 +96,17 @@ namespace Exercise03.persistence
             };
             return base.Execute();
         }
+
+        public bool UpdateStack(Products products, SalesItem salesItem)
+        {
+            query = "UPDATE products SET stack=stack+@quantity WHERE id=@id";
+            @params = new Dictionary<string, object>
+            {
+                {"@id", products.Id},
+                {"@stack",products.Stack},
+                {"@quantity",salesItem.Quantity}
+            };
+            return base.Execute();
+        }
     }
 }

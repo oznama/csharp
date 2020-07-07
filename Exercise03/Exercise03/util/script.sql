@@ -99,6 +99,9 @@ INSERT INTO products (name, description, short_name, price, stack) VALUES (@name
 --Update Products
 UPDATE products SET name=@name,description=@description,short_name=@shortName,price=@price,stack=@stack WHERE id=@id;
 
+--UpdateStack Products
+UPDATE products SET stack = stack + @quantity WHERE id =  @id;
+
 --Save Users
 INSERT INTO users (username,pswd,fullname) VALUES (@userName,@pswd,@fullName);
 
@@ -196,3 +199,28 @@ SELECT id,purchase_date,user_id,provider_id,purchase_total FROM purchases WHERE 
 INSERT INTO purchases (user_id,provider_id,purchase_total)VALUES (@userId,@providerId@purchaseTotal);
 --Update Purchases
 UPDATE purchases SET purchase_date=@purchaseDate,user_id=@userId, provider_id=@providerId,purchase_total=@purchaseTotal WHERE id=@id;
+--Delete sales_item
+DELETE FROM sales_item WHERE sale_id =@saleId;
+--FindAll seles_item
+SELECT id,product_id,sale_id,quantiy FROM sales_item;
+--FindById seles_item
+SELECT id,product_id,sale_id,quantiy FROM sales_item WHERE id=@id;
+--FindByProductId seles_item
+SELECT id,product_id,sale_id,quantiy FROM sales_item WHERE product_id=@productId;
+--FindBySaleId seles_item
+SELECT id,product_id,sale_id,quantiy FROM sales_item WHERE sale_id=@saleId;
+--Save sales_item
+INSERT INTO sales_item (product_id,sale_id, quantity)VALUES (@productId,@saleId,@quantity);
+
+--Delete purchases_item
+DELETE FROM purchases_item WHERE purchase_id=@purchaseId;
+--FindAll purchases_item
+SELECT id,product_id,purchase_id, quantity FROM purchases_item;
+--FindById purchases_item
+SELECT id, product_id, purchase_id, quantity FROM purchases_item WHERE id=@id
+--FindByProductId purchases_item
+SELECT id, product_id, purchase_id, quantity FROM purchases_item WHERE product_id=@productId;
+--FindByPurchaseId purchases_item
+SELECT id, product_id, purchase_id, quantity FROM purchases_item WHERE purchase_id=@purchaseId;
+--Save purchases_item
+INSERT INTO purchases_item (product_id,purchase_id, quantity)VALUES (@productId,@purchaseId,@quantity);

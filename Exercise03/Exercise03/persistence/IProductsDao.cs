@@ -10,5 +10,6 @@ namespace Exercise03.persistence
         bool Delete(int id);
         Products FindById(int id);
         ArrayList FindAll();
+        bool UpdateStack(Products products, SalesItem salesItem);
     }
 }
