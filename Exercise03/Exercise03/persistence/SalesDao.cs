@@ -41,32 +41,31 @@ namespace Exercise03.persistence
             }
             return sales;
         }
-        public Sales FindByClientId(int clientId)
+        public ArrayList FindByClientId(int clientId)
         {
             query = "SELECT id, sale_date,user_id,sale_total,client_id,trusted FROM sales WHERE client_id=@clientId";
             @params = new Dictionary<string, object>
             {
                 {"@clientId",clientId}
             };
-            try
+            ArrayList result = base.SelectQuery();
+            ArrayList sales = new ArrayList();
+            Sales sale;
+
+            foreach (object[] r in result)
             {
-                object[] result = (object [])base.SelectQuery()[0];
-                Sales sales = new Sales
+                sale = new Sales
                 {
-                    Id=(int)result[0],
-                    SaleDate=(DateTime)result[1],
-                    UserId=(int)result[2],
-                    SaleTotal=(decimal)result[3],
-                    ClientId=(int)result[4],
-                    Trusted=(byte)result[5]
+                    Id = (int)r[0],
+                    SaleDate = (DateTime)r[1],
+                    UserId = (int)r[2],
+                    SaleTotal = (decimal)r[3],
+                    ClientId = (int)r[4],
+                    Trusted = (byte)r[5]
                 };
-                return sales;
+                sales.Add(sale);
             }
-            catch(ArgumentOutOfRangeException e)
-            {
-                Console.WriteLine("No se encontraron ventas relacionadas al Cliente con Id: {0}",clientId);
-            }
-            return null;
+            return sales;
         }
 
         public Sales FindById(int id)
@@ -97,36 +96,36 @@ namespace Exercise03.persistence
             return null;
         }
 
-        public Sales FindByUserId(int userId)
+        public ArrayList FindByUserId(int userId)
         {
             query = "SELECT id, sale_date,user_id,sale_total,client_id,trusted FROM sales WHERE user_id=@userId";
             @params = new Dictionary<string, object>
             {
                 {"@userId",userId}
             };
-            try
+            ArrayList result = base.SelectQuery();
+            ArrayList sales = new ArrayList();
+            Sales sale;
+
+            foreach (object[] r in result)
             {
-                object[] result =(object[])base.SelectQuery()[0];
-                Sales sales = new Sales
+                sale = new Sales
                 {
-                    Id = (int)result[0],
-                    SaleDate = (DateTime)result[1],
-                    UserId = (int)result[2],
-                    SaleTotal=(decimal)result[3],
-                    ClientId=(int)result[4],
-                    Trusted=(byte)result[5]
+                    Id = (int)r[0],
+                    SaleDate = (DateTime)r[1],
+                    UserId = (int)r[2],
+                    SaleTotal = (decimal)r[3],
+                    ClientId = (int)r[4],
+                    Trusted = (byte) ((bool)r[5] ? 1 : 2 )
                 };
-                return sales;
+                sales.Add(sale);
             }
-            catch (ArgumentOutOfRangeException e)
-            {
-                Console.WriteLine("No se encontraron ventas relaconadas al Usuario con Id: {0}",userId);
-            }
-            return null;
+            return sales;
         }
 
-        public bool Save(Sales sales)
+        public int Save(Sales sales)
         {
+            int idGenerated = 0;
             query = "INSERT INTO sales (user_id,sale_total,client_id,trusted)VALUES (@userId,@saleTotal,@clientId,@trusted)";
             @params = new Dictionary<string, object>
             {
@@ -135,7 +134,9 @@ namespace Exercise03.persistence
                 {"@clientId",sales.ClientId},
                 {"@trusted",sales.Trusted}
             };
-            return base.Execute();
+            base.Execute(out idGenerated);
+            Console.WriteLine("Sale registred with id {0}", idGenerated);
+            return idGenerated;
         }
 
         public bool Update(Sales sales)

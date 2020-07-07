@@ -83,5 +83,33 @@ namespace Exercise03.persistence
                 return false;
             }
         }
+
+        protected void Execute(out int id)
+        {
+            id = 0;
+            using (SqlConnection connection = new SqlConnection(cs))
+            {
+                try
+                {
+                    query += "; SELECT CAST(scope_identity() AS int)";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        foreach (KeyValuePair<string, object> p in @params)
+                        {
+                            command.Parameters.AddWithValue(p.Key, p.Value);
+                        }
+                        connection.Open();
+                        id = (int)command.ExecuteScalar();
+                        Console.WriteLine("Id created: {0}", id);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error creating row, Message: {0}", e.Message);
+                }
+            }
+        }
+
+
     }
 }

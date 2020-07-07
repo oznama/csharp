@@ -224,3 +224,9 @@ SELECT id, product_id, purchase_id, quantity FROM purchases_item WHERE product_i
 SELECT id, product_id, purchase_id, quantity FROM purchases_item WHERE purchase_id=@purchaseId;
 --Save purchases_item
 INSERT INTO purchases_item (product_id,purchase_id, quantity)VALUES (@productId,@purchaseId,@quantity);
+
+
+-- Borra todos los registros
+DELETE FROM sales;
+-- Resetea la secuencia del ID a 0
+DBCC CHECKIDENT (sales, RESEED, 0);

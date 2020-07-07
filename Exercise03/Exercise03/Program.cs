@@ -15,7 +15,13 @@ namespace Exercise03
             //UsersController u = new UsersController();
             //UserClientsDto uc = u.GetUserWithClientsCreated(1);
             //Console.WriteLine(uc.ToString());
-            //Console.WriteLine("Press ENTER to Continue...");
+
+            SalesView salesView = new SalesView();
+
+            salesView.Sale();
+            salesView.Search();
+
+            Console.WriteLine("Press ENTER to Continue...");
             Console.Read();
         }
     }
