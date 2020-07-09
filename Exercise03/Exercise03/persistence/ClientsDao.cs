@@ -112,6 +112,7 @@ namespace Exercise03.persistence
             query = "UPDATE clients SET name=@name,address=@address,phone=@phone,user_id=@userId,created_date=@createdDate WHERE id=@id";
             @params = new Dictionary<string, object>
             {
+                {"@id",clients.ID},
                 {"@name", clients.Name},
                 {"@address", clients.Address},
                 {"@phone",clients.Phone},

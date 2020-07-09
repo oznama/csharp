@@ -1,5 +1,7 @@
 ﻿using Exercise03.model;
 using Exercise03.persistence;
+using Exercise03.dto;
+using System.Collections;
 
 
 namespace Exercise03.controller
@@ -8,16 +10,16 @@ namespace Exercise03.controller
     {
         private IProductsDao productsDao;
 
-        public bool Save(string nombre, string description, string shortName, decimal price,int stack)
+        public bool Create(ProductsCreateDto productsDto)
         {
             productsDao = new ProductsDao();
-            return productsDao.Save(new Products(nombre,description,shortName,price,stack));           
+            return productsDao.Save(new Products(productsDto.Name,productsDto.Description,productsDto.ShortName,productsDto.Price,productsDto.Stack));           
         }
 
-        public bool Update(int id, string name,string description,string shortName, decimal price, int stack)
+        public bool Update(ProductsUpdateDto productsDto)
         {
             productsDao = new ProductsDao();
-            return productsDao.Update(new Products(id,name,description,shortName,price,stack));
+            return productsDao.Update(new Products(productsDto.Id,productsDto.Name,productsDto.Description,productsDto.ShortName,productsDto.Price,productsDto.Stack));
         }
 
         public bool Delete(int id)
@@ -32,11 +34,19 @@ namespace Exercise03.controller
 
             if (id == 0)
             {
-                return productsDao.FindAll();
+                ArrayList products= new ArrayList();
+                ArrayList result = productsDao.FindAll();
+
+                foreach (Products p in result)
+                {
+                    products.Add(new ProductsReadDto(p.Id,p.Name,p.Description,p.ShortName,p.Price,p.Stack));
+                }
+                return products;        
             }
             else if(id>0)
             {
-                return productsDao.FindById(id);
+                Products products= productsDao.FindById(id);
+                return new ProductsReadDto(products.Id,products.Name,products.Description,products.ShortName,products.Price,products.Stack);
             }
             else
             {

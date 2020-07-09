@@ -1,10 +1,7 @@
 ﻿using Exercise03.dto;
 using Exercise03.model;
 using Exercise03.persistence;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Exercise03.controller
 {
@@ -15,7 +12,6 @@ namespace Exercise03.controller
 
         public bool DoSale(SaleCreateDto saleCreateDto)
         {
-
             salesDao = new SalesDao();
             salesItemDao = new SalesItemDao();
 
@@ -31,7 +27,6 @@ namespace Exercise03.controller
                 }
             }
             
-
             return false;
         }
 

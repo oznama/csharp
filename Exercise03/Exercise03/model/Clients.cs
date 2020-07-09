@@ -24,6 +24,13 @@ namespace Exercise03.model
         {
 
         }
+        public Clients(string name, string address, string phone, int userId)
+        {
+            this.name = name;
+            this.address = address;
+            this.phone = phone;
+            this.userId = userId;
+        }
         public Clients(int id, string name, string address, string phone, int userId, DateTime createdDate)
         {
             this.id = id;

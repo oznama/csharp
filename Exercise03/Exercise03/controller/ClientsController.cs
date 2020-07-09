@@ -1,9 +1,7 @@
 ﻿using Exercise03.dto;
 using Exercise03.model;
 using Exercise03.persistence;
-using System;
 using System.Collections;
-using System.Text;
 
 namespace Exercise03.controller
 {
@@ -13,14 +11,14 @@ namespace Exercise03.controller
 
         public bool Create(ClientCreateDto clientDto)
         {
-            // TODO: Impl
-            return false;
+            clientDao = new ClientsDao();
+            return clientDao.Save(new Clients (clientDto.Name,clientDto.Address,clientDto.Phone,clientDto.UserId));
         }
 
         public bool Update(ClientUpdateDto clientDto)
         {
-            // TODO: Impl
-            return false;
+            clientDao = new ClientsDao();
+            return clientDao.Update(new Clients(clientDto.ID,clientDto.Name,clientDto.Address,clientDto.Phone,clientDto.UserId,clientDto.CreateDate));
         }
 
         public ArrayList FindByUser(int id)
