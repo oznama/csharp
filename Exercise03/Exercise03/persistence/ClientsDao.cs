@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 using Exercise03.model;
 
 namespace Exercise03.persistence
@@ -18,10 +17,10 @@ namespace Exercise03.persistence
             return base.Execute();
         }
 
-        public ArrayList FindAll(int id)
+        public IList<Clients> FindAll(int id)
         {
             query = "SELECT id,name,address,phone,user_id,created_date FROM clients";
-            ArrayList clients = new ArrayList();
+            IList<Clients> clients = new List<Clients>();
             ArrayList result = base.SelectQuery();
             Clients client;
             foreach (object[] r in result)
@@ -68,14 +67,14 @@ namespace Exercise03.persistence
             return null;
         }
 
-        public ArrayList FindByUser(int userId)
+        public IList<Clients> FindByUser(int userId)
         {
             query = "SELECT id, name, address, phone, created_date FROM clients WHERE user_id = @userId";
             @params = new Dictionary<string, object>
             {
                 {"@userId",userId}
             };
-            ArrayList clients = new ArrayList();
+            IList<Clients> clients = new List<Clients>();
             ArrayList result = base.SelectQuery();
             Clients client;
             foreach (object[] r in result)

@@ -1,7 +1,7 @@
 ﻿using Exercise03.dto;
 using Exercise03.model;
 using Exercise03.persistence;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace Exercise03.controller
 {
@@ -21,11 +21,11 @@ namespace Exercise03.controller
             return clientDao.Update(new Clients(clientDto.ID,clientDto.Name,clientDto.Address,clientDto.Phone,clientDto.UserId,clientDto.CreateDate));
         }
 
-        public ArrayList FindByUser(int id)
+        public IList<ClientReadDto> FindByUser(int id)
         {
-            ArrayList listDto = new ArrayList();
+            IList<ClientReadDto> listDto = new List<ClientReadDto>();
             clientDao = new ClientsDao();
-            ArrayList listC = clientDao.FindByUser(id);
+            IList<Clients> listC = clientDao.FindByUser(id);
             foreach(Clients c in listC)
             {
                 listDto.Add(new ClientReadDto(c.ID, c.Name, c.Address, c.Phone, c.CreatedDate));

@@ -17,11 +17,11 @@ namespace Exercise03.persistence
             return base.Execute();            
         }
 
-        public ArrayList FindAll()
+        public IList<Products> FindAll()
         {
             query = "SELECT id, name, description, short_name, price, stack FROM products;";
             @params.Clear();
-            ArrayList products = new ArrayList();
+            IList<Products> products = new List<Products>();
             ArrayList result = base.SelectQuery();
             Products product;
             foreach (object[] r in result)

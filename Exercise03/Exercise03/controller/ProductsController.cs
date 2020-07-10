@@ -1,8 +1,7 @@
 ﻿using Exercise03.model;
 using Exercise03.persistence;
 using Exercise03.dto;
-using System.Collections;
-
+using System.Collections.Generic;
 
 namespace Exercise03.controller
 {
@@ -34,8 +33,8 @@ namespace Exercise03.controller
 
             if (id == 0)
             {
-                ArrayList products= new ArrayList();
-                ArrayList result = productsDao.FindAll();
+                IList< ProductsReadDto> products = new List<ProductsReadDto>();
+                IList<Products> result = productsDao.FindAll();
 
                 foreach (Products p in result)
                 {

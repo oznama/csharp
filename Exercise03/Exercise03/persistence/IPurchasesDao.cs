@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
 using Exercise03.model;
 
 namespace Exercise03.persistence
@@ -8,9 +8,9 @@ namespace Exercise03.persistence
         int Save(Purchases purchases);
         bool Update(Purchases purchases);
         bool Delete(int id);
-        ArrayList FindAll();
+        IList<Purchases> FindAll();
         Purchases FindById(int id);
-        ArrayList FindByProviderId(int providerId);
-        ArrayList FindByUserId(int userId);
+        IList<Purchases> FindByProviderId(int providerId);
+        IList<Purchases> FindByUserId(int userId);
     }
 }
