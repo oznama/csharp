@@ -1,7 +1,7 @@
 ﻿using Exercise03.dto;
 using Exercise03.model;
 using Exercise03.persistence;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace Exercise03.controller
 {
@@ -36,11 +36,11 @@ namespace Exercise03.controller
         /// <param name="option"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ArrayList Searchs(short option, int id)
+        public IList<SaleReadDto> Searchs(short option, int id)
         {
             salesDao = new SalesDao();
             salesItemDao = new SalesItemDao();
-            ArrayList sales = new ArrayList();
+            IList<Sales> sales = new List<Sales>();
             switch(option){
                 case 1:
                     // User
@@ -55,9 +55,9 @@ namespace Exercise03.controller
                     sales = salesDao.FindAll();
                     break;
             }
-            ArrayList salesDto = new ArrayList();
+            IList<SaleReadDto> salesDto = new List<SaleReadDto>();
             SaleReadDto saleDto;
-            ArrayList items;
+            IList<SalesItem> items;
             foreach(Sales s in sales)
             {
                 saleDto = new SaleReadDto(s.Id, s.SaleDate, s.UserId, s.SaleTotal, s.ClientId, s.Trusted == 1 ? true : false);

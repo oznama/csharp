@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
 using System.Text;
 using Exercise03.model;
 
@@ -9,7 +9,7 @@ namespace Exercise03.persistence
         bool Save(Providers providers);
         bool Update(Providers provaders);
         bool Delete(int id);
-        ArrayList FindAll();
+        IList<Providers> FindAll();
         Providers FindById(int id);
     }
 }

@@ -17,13 +17,13 @@ namespace Exercise03.persistence
             return base.Execute();
         }
 
-        public ArrayList FindAll()
+        public IList<Providers>FindAll()
         {
             query = "SELECT id,name,description,created_date,user_id FROM providers";
             @params.Clear();
 
             ArrayList result = base.SelectQuery();
-            ArrayList providers = new ArrayList();
+            IList<Providers> providers = new List<Providers>();
             Providers provider;
 
             foreach (object[] r in result)

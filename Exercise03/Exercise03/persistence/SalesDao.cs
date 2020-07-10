@@ -16,13 +16,13 @@ namespace Exercise03.persistence
             };
             return base.Execute();
         }
-        public ArrayList FindAll()
+        public IList<Sales> FindAll()
         {
             query = "SELECT id, sale_date,user_id,sale_total,client_id,trusted FROM sales";
             @params.Clear();
 
             ArrayList result = base.SelectQuery();
-            ArrayList sales = new ArrayList();
+            IList<Sales> sales = new List<Sales>();
             Sales sale;
 
             foreach(object []r in result)
@@ -40,7 +40,7 @@ namespace Exercise03.persistence
             }
             return sales;
         }
-        public ArrayList FindByClientId(int clientId)
+        public IList<Sales> FindByClientId(int clientId)
         {
             query = "SELECT id, sale_date,user_id,sale_total,client_id,trusted FROM sales WHERE client_id=@clientId";
             @params = new Dictionary<string, object>
@@ -48,7 +48,7 @@ namespace Exercise03.persistence
                 {"@clientId",clientId}
             };
             ArrayList result = base.SelectQuery();
-            ArrayList sales = new ArrayList();
+            IList<Sales> sales = new List<Sales>();
             Sales sale;
 
             foreach (object[] r in result)
@@ -93,7 +93,7 @@ namespace Exercise03.persistence
             }
             return null;
         }
-        public ArrayList FindByUserId(int userId)
+        public IList<Sales> FindByUserId(int userId)
         {
             query = "SELECT id, sale_date,user_id,sale_total,client_id,trusted FROM sales WHERE user_id=@userId";
             @params = new Dictionary<string, object>
@@ -101,7 +101,7 @@ namespace Exercise03.persistence
                 {"@userId",userId}
             };
             ArrayList result = base.SelectQuery();
-            ArrayList sales = new ArrayList();
+            IList<Sales> sales = new List<Sales>();
             Sales sale;
 
             foreach (object[] r in result)

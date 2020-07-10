@@ -1,8 +1,7 @@
 ﻿using Exercise03.persistence;
 using Exercise03.model;
 using Exercise03.dto;
-
-using System.Collections;
+using System.Collections.Generic;
 
 namespace Exercise03.controller
 {
@@ -34,10 +33,10 @@ namespace Exercise03.controller
             return new UserDto(user.Id, user.UserName, user.Pswd, user.FullName);
         }
 
-        public ArrayList GetAll() {
-            ArrayList list = new ArrayList();
+        public IList<UserReadDto> GetAll() {
+            IList<UserReadDto> list = new List<UserReadDto>();
             userDao = new UsersDao();
-            ArrayList listBD = userDao.FindAll();
+            IList<Users> listBD = userDao.FindAll();
             foreach (Users u in listBD) {
                 list.Add( new UserReadDto(u.Id, u.UserName, u.FullName) );
             }

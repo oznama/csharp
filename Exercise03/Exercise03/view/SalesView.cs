@@ -62,7 +62,7 @@ namespace Exercise03.view
             byte opt = byte.Parse(Console.ReadLine());
             Console.Write("\nId: ");
             int id = int.Parse(Console.ReadLine());
-            ArrayList sales = saleController.Searchs(opt, id);
+            IList<SaleReadDto> sales = saleController.Searchs(opt, id);
             foreach(SaleReadDto s in sales)
             {
                 Console.WriteLine(s.ToString());

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using Exercise03.model;
 
@@ -11,6 +11,6 @@ namespace Exercise03.persistence
         bool Update(Users users);
         bool Delete(int id);
         Users FindById(int id);
-        ArrayList FindAll(); 
+        IList<Users> FindAll(); 
     }
 }

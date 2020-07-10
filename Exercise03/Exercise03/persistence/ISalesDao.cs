@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
 using Exercise03.model;
 
 namespace Exercise03.persistence
@@ -8,9 +8,9 @@ namespace Exercise03.persistence
         int Save(Sales sales);
         bool Update(Sales sales);
         bool Delete(int id);
-        ArrayList FindAll();
+        IList<Sales> FindAll();
         Sales FindById(int id);
-        ArrayList FindByUserId(int userId);
-        ArrayList FindByClientId(int clientId);
-    }
+        IList<Sales> FindByUserId(int userId);
+        IList<Sales> FindByClientId(int clientId);
+    } 
 }

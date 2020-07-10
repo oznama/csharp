@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using Exercise03.persistence;
 using Exercise03.dto;
@@ -32,8 +32,8 @@ namespace Exercise03.controller
 
             if (id == 0)
             {
-                ArrayList r = new ArrayList();
-                ArrayList rm = providersDao.FindAll();
+                IList<ProvidersReadDto> r = new List<ProvidersReadDto>();
+                IList<Providers> rm = providersDao.FindAll();
                 foreach(Providers p in rm)
                 {
                     r.Add(new ProvidersReadDto(p.Id, p.Name, p.Description, p.CreatedDate, p.UserId));

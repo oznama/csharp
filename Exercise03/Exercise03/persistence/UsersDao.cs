@@ -18,10 +18,10 @@ namespace Exercise03.persistence
             return base.Execute();
         }
 
-        public ArrayList FindAll()
+        public IList<Users> FindAll()
         {
             query = "SELECT id,username,pswd,fullname FROM users";
-            ArrayList users= new ArrayList();
+            IList<Users> users= new List<Users>();
             ArrayList result = base.SelectQuery();
             Users user;
             foreach (object[] r in result)
