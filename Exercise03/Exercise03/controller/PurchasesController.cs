@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using Exercise03.persistence;
+﻿using Exercise03.persistence;
 using Exercise03.dto;
 using Exercise03.model;
+using System.Collections.Generic;
 
 namespace Exercise03.controller
 {
@@ -32,13 +32,13 @@ namespace Exercise03.controller
             return false;
         }
 
-        public ArrayList Searchs(short option, int id) 
+        public IList<PurchasesReadDto> Searchs(short option, int id) 
         {
             purchasesDao = new PurchasesDao();
             purchasesItemDao = new PurchasesItemDao();
          
             //FindByUserId
-            ArrayList purchases = new ArrayList();
+            IList<Purchases> purchases = new List<Purchases>();
             switch (option)
             {
                 case 1:
@@ -57,9 +57,9 @@ namespace Exercise03.controller
                     break;
             }
 
-            ArrayList purchasesReadDto = new ArrayList();
+            IList<PurchasesReadDto> purchasesReadDto = new List<PurchasesReadDto>();
             PurchasesReadDto purchaseReadDto;
-            ArrayList items;
+            IList<PurchasesItem> items;
             foreach (Purchases p in purchases)
             {
                 purchaseReadDto = new PurchasesReadDto(p.Id,p.PurchaseDate,p.UserId,p.ProviderId,p.PurchaseTotal);

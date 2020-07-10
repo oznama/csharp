@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
 using Exercise03.model;
 
 namespace Exercise03.persistence
@@ -9,7 +9,7 @@ namespace Exercise03.persistence
         bool Update(Products products);
         bool Delete(int id);
         Products FindById(int id);
-        ArrayList FindAll();
+        IList<Products> FindAll();
         bool UpdateStack(Products products, SalesItem salesItem);
     }
 }

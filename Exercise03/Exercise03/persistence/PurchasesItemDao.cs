@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 using Exercise03.model;
 
 namespace Exercise03.persistence
@@ -18,11 +17,11 @@ namespace Exercise03.persistence
             return base.Execute();
         }
 
-        public ArrayList FindAll()
+        public IList<PurchasesItem> FindAll()
         {
             query = "SELECT id,product_id,purchase_id, quantity FROM purchases_item";
             @params.Clear();
-            ArrayList purchasesItem = new ArrayList();
+            IList<PurchasesItem> purchasesItem = new List<PurchasesItem>();
             ArrayList result =base.SelectQuery();
             PurchasesItem purchaseItem;
 
@@ -66,14 +65,14 @@ namespace Exercise03.persistence
             return null;
         }
 
-        public ArrayList FindByProductId(int productId)
+        public IList<PurchasesItem> FindByProductId(int productId)
         {
             query = "SELECT id, product_id, purchase_id, quantity FROM purchases_item WHERE product_id=@productId";
             @params = new Dictionary<string, object>
             {
                 {"@productId",productId}
             };
-            ArrayList purchasesItem = new ArrayList();
+            IList<PurchasesItem> purchasesItem = new List<PurchasesItem>();
             ArrayList result = base.SelectQuery();
             PurchasesItem purchaseItem;
 
@@ -91,14 +90,14 @@ namespace Exercise03.persistence
             return purchasesItem;
         }
 
-        public ArrayList FindByPurchaseId(int purchaseId)
+        public IList<PurchasesItem> FindByPurchaseId(int purchaseId)
         {
             query = "SELECT id, product_id, purchase_id, quantity FROM purchases_item WHERE purchase_id=@purchaseId";
             @params = new Dictionary<string, object>
             {
                 {"@purchaseId", purchaseId}
             };
-            ArrayList purchasesItem = new ArrayList();
+            IList<PurchasesItem> purchasesItem = new List<PurchasesItem>();
             ArrayList result = base.SelectQuery();
             PurchasesItem purchaseItem;
 

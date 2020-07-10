@@ -3,6 +3,7 @@ using Exercise03.controller;
 using Exercise03.model;
 using System.Collections;
 using System.Text;
+using Exercise03.dto;
 
 namespace Exercise03.view
 {
@@ -71,7 +72,7 @@ namespace Exercise03.view
 
             productsController = new ProductsController();
 
-            if (productsController.Save(name,description,shortName,price,stack))
+            if (productsController.Create(new ProductsCreateDto(name, description,shortName,price,stack)))
             {
                 Console.WriteLine("\n\t...PRODUCTO AGREGADO CORRECTAMENTE...\n");
             }
@@ -107,7 +108,7 @@ namespace Exercise03.view
 
                 productsController = new ProductsController();
 
-                if (productsController.Update(id, name, description, shortName, price, stack))
+                if (productsController.Update(new ProductsUpdateDto(id, name, description, shortName, price, stack)))
                 {
                     Console.WriteLine("\t\n...PRODUCTO ACTUALIZADO CORRECTAMENTE...\n");
                 }

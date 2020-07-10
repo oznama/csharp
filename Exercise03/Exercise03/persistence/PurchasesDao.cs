@@ -16,12 +16,12 @@ namespace Exercise03.persistence
             };
             return base.Execute();
         }
-        public ArrayList FindAll()
+        public IList<Purchases> FindAll()
         {
             query = "SELECT id,purchase_date,user_id,provider_id,purchase_total FROM purchases";
             @params.Clear();
             ArrayList result = base.SelectQuery();
-            ArrayList purchases = new ArrayList();
+            List<Purchases> purchases = new List<Purchases>();
             Purchases purchase;
 
             foreach (object[] r in result)
@@ -64,7 +64,7 @@ namespace Exercise03.persistence
             }
             return null;
         }
-        public ArrayList FindByProviderId(int providerId)
+        public IList<Purchases> FindByProviderId(int providerId)
         {
             query = "SELECT id,purchase_date,user_id,provider_id,purchase_total FROM purchases WHERE provider_id=@providerId";
             @params = new Dictionary<string, object>
@@ -72,7 +72,7 @@ namespace Exercise03.persistence
                 {"@providerId",providerId}
             };
             ArrayList result = base.SelectQuery();
-            ArrayList purchases = new ArrayList();
+            List<Purchases> purchases = new List<Purchases>();
             Purchases purchase;
 
             foreach(object[] r in result)
@@ -89,7 +89,7 @@ namespace Exercise03.persistence
             }
             return purchases;
         }
-        public ArrayList FindByUserId(int userId)
+        public IList<Purchases> FindByUserId(int userId)
         {
             query = "SELECT id,purchase_date,user_id,provider_id,purchase_total FROM purchases WHERE user_id=@userId";
             @params = new Dictionary<string, object>
@@ -98,7 +98,7 @@ namespace Exercise03.persistence
             };
 
             ArrayList result = base.SelectQuery();
-            ArrayList purchases = new ArrayList();
+            IList<Purchases> purchases = new List<Purchases>();
             Purchases purchase;
 
             foreach (object[] r in result)
