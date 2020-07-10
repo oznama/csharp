@@ -20,7 +20,7 @@ namespace Exercise03.controller
             int saleId = salesDao.Save(sale);
             if ( saleId > 0 )
             {
-                foreach( SaleItemDto i in saleCreateDto.ProductList)
+                foreach( SaleItemCreateDto i in saleCreateDto.ProductList)
                 {
                     SalesItem si = new SalesItem(i.ProductId, saleId, i.Quantity);
                     salesItemDao.Save(si);
@@ -64,7 +64,7 @@ namespace Exercise03.controller
                 items = salesItemDao.FindBySaleId(s.Id);
                 foreach( SalesItem i in items)
                 {
-                    saleDto.ProductList.Add(new SaleItemDto(i.ProductId, i.SaleId, i.Quantity));
+                    saleDto.ProductList.Add(new SaleItemCreateDto(i.ProductId, i.SaleId, i.Quantity));
                 }
                 salesDto.Add(saleDto);
             }

@@ -27,11 +27,11 @@ namespace Exercise03.view
             Console.Write("\nEs Venta Fiada ?? S | N ");
             sale.Trusted = Console.ReadLine() == "S" ? true : false;
 
-            SaleItemDto item;
+            SaleItemCreateDto item;
             bool @continue = true;
             while (@continue)
             {
-                item = new SaleItemDto();
+                item = new SaleItemCreateDto();
                 Console.Write("\n\nProduct Id: ");
                 item.ProductId = int.Parse(Console.ReadLine());
                 Products product = (Products) productController.Consult(item.ProductId);

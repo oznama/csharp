@@ -16,7 +16,6 @@ namespace Exercise03.persistence
             };
             return base.Execute();
         }
-
         public ArrayList FindAll()
         {
             query = "SELECT id, sale_date,user_id,sale_total,client_id,trusted FROM sales";
@@ -67,7 +66,6 @@ namespace Exercise03.persistence
             }
             return sales;
         }
-
         public Sales FindById(int id)
         {
             query = "SELECT id, sale_date,user_id,sale_total,client_id,trusted FROM sales WHERE id=@id";
@@ -95,7 +93,6 @@ namespace Exercise03.persistence
             }
             return null;
         }
-
         public ArrayList FindByUserId(int userId)
         {
             query = "SELECT id, sale_date,user_id,sale_total,client_id,trusted FROM sales WHERE user_id=@userId";
@@ -122,7 +119,6 @@ namespace Exercise03.persistence
             }
             return sales;
         }
-
         public int Save(Sales sales)
         {
             int idGenerated = 0;
@@ -138,7 +134,6 @@ namespace Exercise03.persistence
             Console.WriteLine("Sale registred with id {0}", idGenerated);
             return idGenerated;
         }
-
         public bool Update(Sales sales)
         {
             query = "UPDATE sales SET user_id=@userId,sale_total=@saleTotal,client_id=@clientId,trusted=@trusted WHERE id=@id";

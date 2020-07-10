@@ -4,17 +4,17 @@ using System.Text;
 
 namespace Exercise03.dto
 {
-    class SaleItemDto
+    class SaleItemCreateDto
     {
         private int productId; // Identificador del producto
         private int saleId; // Identificador de la venta
         private int quantity; // Cantidad comprada del producto
 
-        public SaleItemDto()
+        public SaleItemCreateDto()
         {
         }
 
-        public SaleItemDto(int productId, int saleId, int quantity)
+        public SaleItemCreateDto(int productId, int saleId, int quantity)
         {
             this.productId = productId;
             this.saleId = saleId;

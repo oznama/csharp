@@ -38,7 +38,7 @@ namespace Exercise03.dto
         public override string ToString()
         {
             String buffer = "[ID: " + id + ",SALE DATE: " + saleDate + ",USER ID: " + userId + ",SALE TOTA: " + saleTotal + ",CLIENT ID: " + clientId + ",TRUSTED: " + trusted + "]";
-            foreach(SaleItemDto i in productList)
+            foreach(SaleItemCreateDto i in productList)
             {
                 buffer += "\n\t-" + i.ToString();
             }
