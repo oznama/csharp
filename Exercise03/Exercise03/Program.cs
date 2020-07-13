@@ -10,11 +10,12 @@ namespace Exercise03
     {
         static void Main(string[] args)
         {
-            //ProductsView productsView = new ProductsView();
-            //productsView.Menu();
-            //UsersController u = new UsersController();
-            //UserClientsDto uc = u.GetUserWithClientsCreated(1);
-            //Console.WriteLine(uc.ToString());
+            ProductsView productsView = new ProductsView();
+            productsView.Menu();
+            
+            UsersController u = new UsersController();
+            UserClientsDto uc = u.GetUserWithClientsCreated(1);
+            Console.WriteLine(uc.ToString());
 
             SalesView salesView = new SalesView();
 
