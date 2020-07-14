@@ -8,3 +8,5 @@ C Sharp projects exercises
 				: Agregando otra descripcion en README.md
 
 2020/06/17 - ONM: Se ha verificado el commit de la primera parte del modulo de producto
+
+2020/07/13 - ONM: Se crea proyecto para entity framework
