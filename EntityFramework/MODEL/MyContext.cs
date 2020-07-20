@@ -16,6 +16,9 @@ namespace EntityFramework.MODEL
         }
         public DbSet<Table01> Table01 { get; set; }
         public DbSet<Table02> Table02 { get; set; }
+        public DbSet<Users> Users { get; set; }
+        public DbSet<Employees> Employees { get; set; }
+        public DbSet<General> General { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -17,3 +17,45 @@ create table table02(
 	created datetime not null default getdate(),
 	primary key(id)
 )
+
+create table users(
+	id int not null identity,
+	fullname varchar(100) not null,
+	shortname varchar(30),
+	email varchar(100) not null,
+	password varchar(15) not null,
+	status varchar(8)not null,
+	createdate datetime not null default getdate(),
+	lastaccess_date datetime not null default getdate(),
+	lastaccessIP varchar(30) not null,
+	primary key(id)
+)
+
+create table employees(
+	id int not null identity,
+	num_employee varchar(10) not null,
+	firstname varchar(30) not null,
+	lastname varchar (70) not null,
+	status varchar(8) not null,
+	contract_date datetime not null,
+	position varchar(50) not null,
+	department varchar(50) not null,
+	boss varchar(100) not null,
+	users_id int not null,
+	primary key(id),
+	foreign key(users_id) references users(id)
+)
+
+create table general(
+	id int not null identity,
+	employee_id int not null,
+	rfc varchar(13)not null,
+	curp varchar(18) not null,
+	nss varchar(30)not null,
+	bank varchar(50) not null,
+	interbank_account int not null,
+	user_id int not null,
+	primary key(id),
+	foreign key (employee_id) references employees(id),
+	foreign key (user_id) references users(id)
+)
