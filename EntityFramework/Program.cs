@@ -13,11 +13,18 @@ namespace EntityFramework
 {
     class Program
     {
+        public static Users currentUser;
         static void Main(string[] args)
         {
 
+
             //UsersTest.testGuardar();
-            UsersTest.testUpdateLastAccessDate();
+            if (UsersTest.testLogin())
+            {
+                Console.WriteLine("Despues del Login " + Program.currentUser);
+
+                UsersTest.testUpdateLastAccessDate();
+            }
             //UsersTest.testUpdateAll();
             //UsersTest.testFindAll();
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EntityFramework.test
 {
-    class Employees
+    class EmployeesTest
     {
         public  static void testSave()
         {
@@ -19,15 +19,31 @@ namespace EntityFramework.test
 			string lastName = Console.ReadLine();
 			Console.Write("\nSTATUS: ");
 			string status = Console.ReadLine();
+			Console.Write("\nCONTRACT DATE");
+			DateTime contractDate = DateTime.Parse(Console.ReadLine());
 			Console.Write("\nPOSITION: ");
 			string position = Console.ReadLine();
 			Console.Write("\nDEPARTMENT: ");
 			string department = Console.ReadLine();
 			Console.Write("\nBOSS: ");
 			string boss = Console.ReadLine();
+			
+			using (MyContext myContext = new MyContext())
+            {
+				Employees employees = new Employees
+				{
+					NumEmployee = numEmployee,
+					FirstName = firstName,
+					LastName = lastName,
+					Status = status,
+					ContractDate = contractDate,
+					Position = position,
+					Department = department,
+					Boss = boss,
+					UsersId = Program.currentUser.Id				
+				};
+			}
 
-			// metodo que regrese el id del usuario que creo el empleado
-			int userId;
 		}
     }
 }

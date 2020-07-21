@@ -9,6 +9,22 @@ namespace EntityFramework.test
 {
     class UsersTest
     {
+        public static bool testLogin()
+        {
+            // TODO: programar login
+
+            Console.Write("\nUser: ");
+            string email=Console.ReadLine();
+            Console.Write("\nPassword: ");
+            string password = Console.ReadLine();
+            using(MyContext context = new MyContext())
+            {
+                //Program.currentUser = context.Users.Where(u => u.Email == email && u.Password == password).Single();
+                Program.currentUser = context.Users.SingleOrDefault(u => u.Email == email && u.Password == password);
+                Console.WriteLine("Dentro del Usign en Test Login "+Program.currentUser);
+                return Program.currentUser != null;
+            }
+        }
         public static void testGuardar()
         {
             // Con esto puedo recuperar la IP de una maquina
@@ -78,15 +94,11 @@ namespace EntityFramework.test
         {
             using (MyContext myContext = new MyContext())
             {
-                Console.Write("\nID: ");
-                int id = int.Parse(Console.ReadLine());
+                Users userDate = myContext.Users.Find(Program.currentUser.Id);
+                userDate.LastAccessDate = DateTime.Now;
+                Console.WriteLine("Antes de Actualizar Fecha: " + Program.currentUser);
 
-                Users userToUpdate = myContext.Users.Find(id);
-                if (id.Equals(userToUpdate.Id))
-                {
-                    userToUpdate.LastAccessDate = DateTime.Now;
-                    myContext.SaveChanges();
-                }
+                myContext.SaveChanges();
             }
         }
         public static void testFindAll()
