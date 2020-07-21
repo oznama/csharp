@@ -26,7 +26,7 @@ create table users(
 	password varchar(15) not null,
 	status varchar(8)not null,
 	createdate datetime not null default getdate(),
-	lastaccess_date datetime not null default getdate(),
+	lastaccess_date datetime,
 	lastaccessIP varchar(30) not null,
 	primary key(id)
 )
@@ -59,3 +59,10 @@ create table general(
 	foreign key (employee_id) references employees(id),
 	foreign key (user_id) references users(id)
 )
+
+--alter table users alter column lastaccess_date datetime;
+DBCC CHECKIDENT ('users', RESEED, 0)
+
+SELECT *FROM users;
+SELECT *FROM employees;
+SELECT *FROM general;

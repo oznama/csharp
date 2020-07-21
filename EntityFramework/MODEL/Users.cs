@@ -19,9 +19,10 @@ namespace EntityFramework.MODEL
 		public string Email { get; set; }
 		public string Password { get; set; }
 		public string Status { get; set; }
-		public DateTime Createdate { get; set; }
 		[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-		public DateTime LastAccessDate { get; set; }
+		public DateTime Createdate { get; set; }
+		[Column("lastaccess_date")]
+		public DateTime? LastAccessDate { get; set; }
 		public string LastAccessIP { get; set; }
 
         public override string ToString()
