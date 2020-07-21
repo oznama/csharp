@@ -11,7 +11,6 @@ namespace EntityFramework.test
     {
         public  static void testSave()
         {
-
 			Console.Write("\nEMPLOYEE NUMBER: ");
 			string numEmployee = Console.ReadLine();
 			Console.Write("\nFIRST NAME: ");
