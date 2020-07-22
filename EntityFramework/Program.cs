@@ -21,8 +21,6 @@ namespace EntityFramework
             //UsersTest.testGuardar();
             if (UsersTest.testLogin())
             {
-                Console.WriteLine("Despues del Login " + Program.currentUser);
-
                 UsersTest.testUpdateLastAccessDate();
             }
             //UsersTest.testUpdateAll();

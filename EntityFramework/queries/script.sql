@@ -22,18 +22,18 @@ create table users(
 	id int not null identity,
 	fullname varchar(100) not null,
 	shortname varchar(30),
-	email varchar(100) not null,
+	email varchar(100) not null unique,
 	password varchar(15) not null,
 	status varchar(8)not null,
 	createdate datetime not null default getdate(),
 	lastaccess_date datetime,
 	lastaccessIP varchar(30) not null,
-	primary key(id)
+	primary key(id),
 )
 
 create table employees(
 	id int not null identity,
-	num_employee varchar(10) not null,
+	num_employee varchar(10) not null unique,
 	firstname varchar(30) not null,
 	lastname varchar (70) not null,
 	status varchar(8) not null,
@@ -61,6 +61,8 @@ create table general(
 )
 
 --alter table users alter column lastaccess_date datetime;
+alter table users add unique (email);
+alter table employees add unique (num_employee);
 DBCC CHECKIDENT ('users', RESEED, 0)
 
 SELECT *FROM users;

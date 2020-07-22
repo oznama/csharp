@@ -16,14 +16,16 @@ namespace EntityFramework.test
             Console.Write("\nUser: ");
             string email=Console.ReadLine();
             Console.Write("\nPassword: ");
-            string password = Console.ReadLine();
-            using(MyContext context = new MyContext())
+            string password = readLinePassword();
+            Console.WriteLine("\nPassword: {0}", password);
+
+            using (MyContext context = new MyContext())
             {
                 //Program.currentUser = context.Users.Where(u => u.Email == email && u.Password == password).Single();
                 Program.currentUser = context.Users.SingleOrDefault(u => u.Email == email && u.Password == password);
-                Console.WriteLine("Dentro del Usign en Test Login "+Program.currentUser);
                 return Program.currentUser != null;
             }
+
         }
         public static void testGuardar()
         {
@@ -94,10 +96,8 @@ namespace EntityFramework.test
         {
             using (MyContext myContext = new MyContext())
             {
-                Users userDate = myContext.Users.Find(Program.currentUser.Id);
-                userDate.LastAccessDate = DateTime.Now;
-                Console.WriteLine("Antes de Actualizar Fecha: " + Program.currentUser);
-
+                Program.currentUser = myContext.Users.Find(Program.currentUser.Id);
+                Program.currentUser.LastAccessDate = DateTime.Now;
                 myContext.SaveChanges();
             }
         }
@@ -141,6 +141,37 @@ namespace EntityFramework.test
 
              }
 
+        }
+
+        private static string readLinePassword()
+        {
+            string pass = ""; // Variable que concatena las letras que se van ingresando en consola
+            do // Un ciclo infinito hasta que se oprima "ENTER"
+            {
+                ConsoleKeyInfo teclaApretada = Console.ReadKey(true); // Se recupera la tecla apretada desde consola
+                                                            // y se guarda en un objeto de tipo ConsoleKeyInfo
+                // Se compara que la tecla presionada no sea ni Backspace (Borrar) ni ENTER
+                if (teclaApretada.Key != ConsoleKey.Backspace && teclaApretada.Key != ConsoleKey.Enter)
+                {
+                    pass += teclaApretada.KeyChar; // Se concatena el valor de la techa a la cadena pass
+                    Console.Write("*"); // Se pinta en consola un asterisco
+                }
+                else // Si la tecla apretada si fue Backspace o ENTER
+                {
+                    // Si la tecla apretada es backespace y la cadena pass ya tiene una longitud mayor de 0
+                    if (teclaApretada.Key == ConsoleKey.Backspace && pass.Length > 0)
+                    {
+                        pass = pass.Substring(0, (pass.Length - 1)); // Se substrae el ultimo caracter de pass
+                        Console.Write("\b \b"); // Se borra un asterisco de la cadena de asteriscos ya pintadas en consola
+                    }
+                    // Si la tecla apretada es ENTER, se termina el ciclo infinito
+                    else if (teclaApretada.Key == ConsoleKey.Enter)
+                    {
+                        break; // Rompe el ciclo infinito
+                    }
+                }
+            } while (true);
+            return pass; // Devuelve la variable pass con las letras de la contrasenia escritas desde consola
         }
     }
 }
