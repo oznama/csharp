@@ -142,7 +142,6 @@ namespace EntityFramework.test
              }
 
         }
-
         private static string readLinePassword()
         {
             string pass = ""; // Variable que concatena las letras que se van ingresando en consola

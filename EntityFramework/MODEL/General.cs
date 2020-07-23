@@ -11,12 +11,15 @@ namespace EntityFramework.MODEL
 	{
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id { get; set; }
+		[Column("employee_id")]
 		public int EmployeeId { get; set; }
 		public string RFC { get; set; }
 		public string Curp { get; set; }
 		public string NSS { get; set; }
 		public string Bank { get; set; }
+		[Column("interbank_account")]
 		public int InterBankAccount { get; set; }
+		[Column("user_id")]
 		public int UserId { get; set; }
 
         public override string ToString()

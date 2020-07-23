@@ -11,14 +11,17 @@ namespace EntityFramework.MODEL
 	{
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id { get; set; }
+		[Column("num_employee")]
 		public string NumEmployee { get; set; }
 		public string FirstName { get; set; }
 		public string LastName {get; set;}
 		public string Status { get; set; }
+		[Column("contract_date")]
 		public DateTime ContractDate { get; set; }
 		public string Position { get; set; }
 		public string Department { get; set; }
 		public string Boss { get; set; }
+		[Column("users_id")]
 		public int UsersId { get; set; }
 
         public override string ToString()

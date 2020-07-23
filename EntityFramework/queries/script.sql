@@ -63,8 +63,10 @@ create table general(
 --alter table users alter column lastaccess_date datetime;
 alter table users add unique (email);
 alter table employees add unique (num_employee);
-DBCC CHECKIDENT ('users', RESEED, 0)
+DBCC CHECKIDENT ('employees', RESEED, 0)
 
 SELECT *FROM users;
 SELECT *FROM employees;
 SELECT *FROM general;
+
+SELECT IDENT_CURRENT ('table01');

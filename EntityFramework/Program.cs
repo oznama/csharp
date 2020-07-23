@@ -14,20 +14,23 @@ namespace EntityFramework
     class Program
     {
         public static Users currentUser;
+        public static int currentEmployees;
+       
         static void Main(string[] args)
         {
-
-
             //UsersTest.testGuardar();
             if (UsersTest.testLogin())
             {
                 UsersTest.testUpdateLastAccessDate();
+                EmployeesTest.testSave();
+                GeneralTest.testSave();
             }
             //UsersTest.testUpdateAll();
+            //UsersTest.testCambiarContrasena();
             //UsersTest.testFindAll();
-
             Console.WriteLine("Press ENTER to continue...");
             Console.Read();
         }
+
     }
 }
