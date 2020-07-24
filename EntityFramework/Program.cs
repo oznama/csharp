@@ -28,6 +28,12 @@ namespace EntityFramework
             //UsersTest.testUpdateAll();
             //UsersTest.testCambiarContrasena();
             //UsersTest.testFindAll();
+
+            UsersTest.ShowOneWithRelationships();
+            Console.WriteLine();
+            EmployeesTest.ShowOneWithRelationship();
+
+
             Console.WriteLine("Press ENTER to continue...");
             Console.Read();
         }

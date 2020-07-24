@@ -70,3 +70,24 @@ SELECT *FROM employees;
 SELECT *FROM general;
 
 SELECT IDENT_CURRENT ('table01');
+
+-- Pagina oficial de Microsoft Relationship
+-- https://docs.microsoft.com/en-us/ef/ef6/fundamentals/relationships
+
+-- Recupera un empleado
+SELECT * FROM employees WHERE id = 2;
+
+-- Recupera el usuario que registro al empleado
+SELECT u.*
+FROM employees e
+INNER JOIN users u ON u.id = e.users_id
+WHERE e.id = 2;
+
+-- Recupera un usuario
+SELECT * FROM users WHERE id = 1;
+
+-- Recupera los empleados registrados por un usuario
+SELECT e.*
+FROM users u
+INNER JOIN employees e ON e.users_id = u.id
+WHERE u.id = 1;

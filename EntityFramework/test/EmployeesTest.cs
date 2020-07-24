@@ -1,4 +1,5 @@
 ﻿using EntityFramework.MODEL;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
@@ -92,5 +93,31 @@ namespace EntityFramework.test
             }
         }
 
-    }
+		/// <summary>
+		/// Metodo que realiza consulta OneToOne
+		/// </summary>
+		public static void ShowOneWithRelationship()
+		{
+			Console.Write("\nId Empleado: ");
+			int employeeId = int.Parse(Console.ReadLine());
+			using (MyContext context = new MyContext())
+			{
+				/* Buscar el empleado con id leido desde consola
+				 * SELECT * FROM employees WHERE id = ?;
+				 */
+				var employee = context.Employees.First(e => e.Id == employeeId);
+				Console.WriteLine("Employee finded: {0}\n", employee);
+
+				/*
+				 * Busca el registro usuario asociado al empleado 
+				 * SELECT u.*
+				 * FROM employees e
+				 * INNER JOIN users u ON u.id = e.users_id
+				 * WHERE e.id = ?;
+				 */
+				context.Entry(employee).Reference(e => e.User).Load();
+				Console.WriteLine("\tCreated by user: {0}", employee.User);
+			}
+		}
+	}
 }
