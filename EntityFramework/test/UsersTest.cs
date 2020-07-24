@@ -174,8 +174,9 @@ namespace EntityFramework.test
             } while (true);
             return pass; // Devuelve la variable pass con las letras de la contrasenia escritas desde consola
         }
+
         /// <summary>
-        /// Metodo que realiza la consulta OneToMany
+        /// Metodo que realiza consulta OneToMany
         /// </summary>
         public static void ShowOneWithRelationships()
         {
@@ -183,11 +184,12 @@ namespace EntityFramework.test
             int userId = int.Parse(Console.ReadLine());
             using (MyContext context = new MyContext())
             {
-                /*Buscar el usuario con id leido desde consola
+
+                /* Buscar el usuario con id leido desde consola
                  * SELECT * FROM users WHERE id = 1;
                  */
                 var user = context.Users.First(u => u.Id == userId);
-                Console.WriteLine("User finded: {0}\n",user);
+                Console.WriteLine("User finded: {0}\n", user);
 
                 /*
                  * Busca todos los empleados que tengan user_id
@@ -199,10 +201,10 @@ namespace EntityFramework.test
                  * INNER JOIN employees e ON e.users_id = u.id
                  * WHERE u.id = 1;
                  */
-                context.Entry(user).Collection(u => u.Employess).Load();
-                foreach ( var et in user.Employess)
+                context.Entry(user).Collection(u => u.Employees).Load();
+                foreach ( var et in user.Employees)
                 {
-                    Console.WriteLine("\tEmployees registred: {0}",et);
+                    Console.WriteLine("\tEmployess registred: {0}", et);
                 }
             }
         }

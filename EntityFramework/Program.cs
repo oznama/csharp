@@ -22,16 +22,21 @@ namespace EntityFramework
         static void Main(string[] args)
         {
             //UsersTest.testGuardar();
-            //if (UsersTest.testLogin())
-            //{
-            //    UsersTest.testUpdateLastAccessDate();
-            //    EmployeesTest.testSave();
-            //    GeneralTest.testSave();
-            //}
+            if (UsersTest.testLogin())
+            {
+                UsersTest.testUpdateLastAccessDate();
+                EmployeesTest.testSave();
+                GeneralTest.testSave();
+            }
             //UsersTest.testUpdateAll();
             //UsersTest.testCambiarContrasena();
             //UsersTest.testFindAll();
-            //UsersTest.testUserEmployees();
+
+
+            UsersTest.ShowOneWithRelationships();
+            Console.WriteLine();
+            EmployeesTest.ShowOneWithRelationships();
+
 
             Console.WriteLine("Press ENTER to continue...");
             Console.Read();

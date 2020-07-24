@@ -1,4 +1,5 @@
 ﻿using EntityFramework.MODEL;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
@@ -106,16 +107,11 @@ namespace EntityFramework.test
 				var employee = context.Employees.First(e => e.Id == employeeId);
 				Console.WriteLine("Employee finded: {0} \n",employee);
 
-				/* 
-				 * Busca el registro usuario asociado al empleado
-				 * SELECT u.*
-				 * FROM employees e
-				 * INNER JOIN users u ON u.id = e.users_id
-				 * WHERE e.id = ?;
-				 */
 				context.Entry(employee).Reference(e => e.User).Load();
-				Console.WriteLine("\t Created by user: {0}",employee.User);
-            }
-        }
+
+				Console.WriteLine("\tCreated by user: {0}", employee.User);
+			}
+		}
+
 	}
 }

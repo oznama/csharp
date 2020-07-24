@@ -25,7 +25,8 @@ namespace EntityFramework.MODEL
 		public DateTime? LastAccessDate { get; set; }
 		public string LastAccessIP { get; set; }
 
-		public ICollection<Employees> Employess { get; set; }
+		public ICollection<Employees> Employees { get; set; }
+
         public override string ToString()
         {
 			return String.Format("ID: {0}, FULL NAME: {1}, SHORT NAME: {2}, EMAIL: {3}, PASSWORD: {4}, STATUS: {5}, CREATE DATE: {6}, LAST ACCESS DATE: {7}, LAST ACCESS IP{8}",Id,FullName,ShortName,Email,Password,Status,Createdate,LastAccessDate,LastAccessIP);
