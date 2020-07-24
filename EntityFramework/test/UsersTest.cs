@@ -1,9 +1,11 @@
 ﻿using EntityFramework.MODEL;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Windows.Forms;
 
 namespace EntityFramework.test
 {
@@ -171,6 +173,38 @@ namespace EntityFramework.test
                 }
             } while (true);
             return pass; // Devuelve la variable pass con las letras de la contrasenia escritas desde consola
+        }
+        /// <summary>
+        /// Metodo que realiza la consulta OneToMany
+        /// </summary>
+        public static void ShowOneWithRelationships()
+        {
+            Console.Write("\nId Usuario: ");
+            int userId = int.Parse(Console.ReadLine());
+            using (MyContext context = new MyContext())
+            {
+                /*Buscar el usuario con id leido desde consola
+                 * SELECT * FROM users WHERE id = 1;
+                 */
+                var user = context.Users.First(u => u.Id == userId);
+                Console.WriteLine("User finded: {0}\n",user);
+
+                /*
+                 * Busca todos los empleados que tengan user_id
+                 * igual al usuario recuperado desde el metodo
+                 * de arriba
+                 * 
+                 * SELECT e.*
+                 * FROM users u
+                 * INNER JOIN employees e ON e.users_id = u.id
+                 * WHERE u.id = 1;
+                 */
+                context.Entry(user).Collection(u => u.Employess).Load();
+                foreach ( var et in user.Employess)
+                {
+                    Console.WriteLine("\tEmployees registred: {0}",et);
+                }
+            }
         }
     }
 }

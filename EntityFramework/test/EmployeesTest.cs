@@ -50,7 +50,6 @@ namespace EntityFramework.test
 			}
 			return Program.currentEmployees;
 		}
-
 		public static void testUpdateAll()
         {
 			using(MyContext myContext = new MyContext())
@@ -91,6 +90,32 @@ namespace EntityFramework.test
 				}
             }
         }
+		/// <summary>
+		/// Metodo que realiza la consulta OneToOne
+		/// </summary>
+		/// <param name="optionsBuilder"></param>
+		public static void ShowOneWithRelationships()
+        {
+			Console.Write("\nId Empleado: ");
+			int employeeId = int.Parse(Console.ReadLine());
+			using (MyContext context = new MyContext())
+            {
+				/*Busca el empleado con id leido desde consola
+				 * SELECT *FROM employees WHERE id = ?;
+				 */
+				var employee = context.Employees.First(e => e.Id == employeeId);
+				Console.WriteLine("Employee finded: {0} \n",employee);
 
-    }
+				/* 
+				 * Busca el registro usuario asociado al empleado
+				 * SELECT u.*
+				 * FROM employees e
+				 * INNER JOIN users u ON u.id = e.users_id
+				 * WHERE e.id = ?;
+				 */
+				context.Entry(employee).Reference(e => e.User).Load();
+				Console.WriteLine("\t Created by user: {0}",employee.User);
+            }
+        }
+	}
 }

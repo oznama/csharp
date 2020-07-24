@@ -19,7 +19,6 @@ namespace EntityFramework.MODEL
         public DbSet<Users> Users { get; set; }
         public DbSet<Employees> Employees { get; set; }
         public DbSet<General> General { get; set; }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
